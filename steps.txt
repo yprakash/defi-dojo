@@ -1,0 +1,25 @@
+Uninstall old foundry if you have
+which forge
+which cast
+
+# Remove the CLI binaries
+rm -rf ~/.foundry
+# Remove any installed symlinks
+# If they point to ~/.foundry/bin/forge or similar, remove them:
+rm -f $(which forge)
+rm -f $(which cast)
+
+FRESH install
+
+https://book.getfoundry.sh/getting-started/installation
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+forge --version
+
+git clone https://github.com/yprakash/defi-dojo.git
+cd defi-dojo
+# Since you're in a public GitHub repo that you've already cloned, Foundry should not touch Git (already initialized a Git repo).
+forge init . --no-git --force
+forge build
+
+forge test -vv --match-path test/L000_ClaimOwnership.t.sol --no-cache

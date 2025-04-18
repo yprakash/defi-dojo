@@ -1,0 +1,6 @@
+[profile.default]
+src = "."  # Tells Foundry to look in the current directory (and subdirectories) for Solidity files.
+out = "out"  # Specifies where the compiled artifacts will be saved
+libs = ["lib"]
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
