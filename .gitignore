@@ -3,8 +3,8 @@
 L*/info.txt
 out/
 cache/
-python_exploits/
 test_private/
+.pytest_cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
