@@ -1,8 +1,8 @@
 # YP stuff
 *.log
-L*/info.txt
-out/
 cache/
+node_modules/
+out/
 test_private/
 .pytest_cache/
 
