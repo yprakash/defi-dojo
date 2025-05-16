@@ -10,10 +10,9 @@ This challenge revolves around a smart contract that uses delegatecall to a help
 💼 Why It Matters
 
 Through this exercise, we can:
-- Understand Understand low-level EVM concepts like delegatecall.
+- Understand low-level EVM concepts like delegatecall.
 - Can exploit storage layout collisions
 - Automate smart contract attacks using both Solidity and Python
-- Demonstrate key audit skills for real-world proxy contracts
 
 ✍️ Author
 
