@@ -3,6 +3,7 @@
 cache/
 node_modules/
 out/
+solutions_py/
 test_private/
 .pytest_cache/
 
