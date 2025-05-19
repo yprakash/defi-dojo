@@ -1,37 +1,30 @@
-## 🔁 Level 10 — Re-entrancy: The Recursive Trap
+## Ethernaut Level 11 — Elevator
 
-### 🔒 Challenge Description
-The contract in this level manages Ether balances and allows users to deposit and withdraw their funds. However, it contains a critical flaw in the `withdraw()` function that makes it vulnerable to a **re-entrancy attack**.
-
-An attacker can exploit this to **drain all funds from the contract**, even if they only deposited a small amount.
+**Category:** Smart Contract Exploitation  
+**Objective:** Reach the top of the elevator by exploiting the building's logic.
+---
+### 🧠 Level Summary
+The `Elevator` contract is meant to simulate an elevator system. You must trick it into thinking it's reached the top floor using a malicious `Building` contract.
 
 ---
-### 💥 Vulnerability
+### 🔍 Vulnerability
+The `Elevator` contract calls the `isLastFloor(uint)` function **twice**:
+1. To check if the floor is the last one.
+2. Then conditionally calls `goTo()` if the result is `false`.
 
-The contract transfers Ether using `.call()` **before** updating the user’s balance. This violates the [Checks-Effects-Interactions pattern](https://fravoll.github.io/solidity-patterns/checks_effects_interactions.html).
+Since it **does not store the return value** of the first call, if `isLastFloor()` returns different values between the two calls, you can bypass the logic and make `top = true`.
 
-A malicious contract can:
-1. Call `withdraw()`
-2. Receive Ether → trigger fallback
-3. Call `withdraw()` again (before balance is updated)
-4. Repeat recursively
 ---
-### 🧠 Learning Objectives
+### 🔓 Exploit Strategy
 
-- Understand how re-entrancy works
-- Learn why **state updates must happen before external calls**
-- See how **attack contracts recursively drain funds**
-- Practice exploiting with **web3.py** and **Foundry**
+1. Deploy a malicious `Building` contract that implements the `isLastFloor(uint)` interface.
+2. Inside `isLastFloor(uint)`:
+   - Return `false` on the **first call** (allow elevator to go).
+   - Return `true` on the **second call** (trick elevator into thinking it’s at the top).
+3. Call `elevator.goTo(floor)` via your attack contract.
+4. Submit the instance when `elevator.top()` returns `true`.
 ---
-### 🧯 Mitigation
-
-To fix this, the contract should:
-- **Update state before** making external calls
-- Or use **pull-based withdrawal patterns** (`withdraw()` must be initiated by user, not pushed by the contract)
-- Or consider using **reentrancy guards** like `nonReentrant` from [OpenZeppelin’s ReentrancyGuard](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard)
----
-### ✅ Success Condition
-The challenge is solved when:
-- The vulnerable contract’s Ether balance is reduced to **zero**
-- The attacker's contract balance has increased by the **total funds held**
----
+### 💡 Key Takeaways
+- Interfaces can be tricked using stateful logic.
+- Never call the same external function multiple times without caching the result.
+- External calls are untrusted — assume they can behave adversarially.

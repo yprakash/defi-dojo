@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import {Elevator, Building} from "./L011_Elevator/Elevator.sol";
+import {Elevator, Building} from "./Elevator.sol";
 
 contract BuildingFloor is Building {
     bool public toggle = true;
