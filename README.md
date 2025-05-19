@@ -38,8 +38,10 @@ Inspired by:
 - [Capture the Ether](https://capturetheether.com/)
 - Real audit reports from Trail of Bits, Spearbit, and others
 ---
-⚙️ Python Automation Layer  
+⚙️ Python Automation Layer
+
 Each level includes an optional Python-based exploit script leveraging web3.py, pytest, and ABI introspection. This demonstrates advanced TDD, scripting, and offensive testing beyond Solidity. It simulates how real-world auditors and bug bounty hunters automate exploit pipelines.
+
 ---
 ## 📬 Feedback or Collaboration?
 Feel free to contact me in case of any issues, or DM me on [LinkedIn](https://www.linkedin.com/in/yprakash/).  

@@ -4,7 +4,7 @@ import solcx
 from dotenv import load_dotenv
 from web3 import Web3
 
-load_dotenv(dotenv_path='.env')
+load_dotenv()
 
 w3 = Web3(Web3.HTTPProvider(os.getenv('PROVIDER_URL')))
 if w3.is_connected():
