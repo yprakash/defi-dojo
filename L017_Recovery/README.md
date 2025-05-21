@@ -1,6 +1,6 @@
 # 🛡️ 17. Recovery: Reverse-engineering a destroyed contract and reclaiming lost funds by leveraging EVM internals
 
-**Category**: Storage & `delegatecall`  
+**Category**: Smart Contract Exploitation  
 **Tags**: Solidity, EVM Internals, Web3.py  
 **Difficulty**: ★★★☆☆
 
@@ -23,8 +23,8 @@ In this level, we are given a contract called Recovery which can create simple t
 4. Validate that your account received the ETH.
 ---
 ## 🧠 Understanding the Exploit
-1. Finding Contract Address
-- **Manual Method**: Take Ethernaut deployed contract address and search its hashes in etherscan.
+1. Finding Contract Address: Smart contract addresses are [computed deterministically](https://docs.soliditylang.org/en/v0.8.30/introduction-to-smart-contracts.html#accounts)
+- Manual Method: Take Ethernaut deployed contract address and search its hashes in etherscan.
 - Use a tool like **RLP Decoder** or ethers.js CLI to compute keccak256(rlp.encode([deployer, nonce])).
 - Python (generic) method:
 ```python
@@ -37,7 +37,7 @@ encoded = rlp.encode([sender, nonce])
 contract_address = keccak(encoded)[12:].hex()
 print("0x" + contract_address)
 ```
-- What I used (without extra rlp, works only for nonce < 128):
+- What I used (without extra `import rlp`, works only for nonce < 128):
 ```python
 rlp_encoded = b'\xd6\x94' + bytes.fromhex(_address[2:]) + b'\x01'
 lost_contract_address = keccak(rlp_encoded)[12:]
@@ -46,9 +46,13 @@ lost_contract_address = w3.to_checksum_address(lost_contract_address.hex())
 2. What is RLP?:  
 Recursive Length Prefix encoding is used to encode structured data into bytes. Ethereum uses it for serializing transactions and computing contract addresses.
 3. Why 0xd6 and 0x94?  
-This was confusing initially. But they are part of the RLP prefix bytes:
-- 0xd6 = list prefix
-- 0x94 = 20-byte address prefix
+These are not magic numbers, but part of RLP (Recursive Length Prefix) encoding, which Ethereum uses to encode data like [sender, nonce] before hashing it with keccak256.
+
+| Byte   | Meaning                     | Why It's Used                              |
+| ------ | --------------------------- | ------------------------------------------ |
+| `0x94` | "Next 20 bytes is a string" | 20-byte address (the deployer’s address)   |
+| `0xd6` | "List of total 22 bytes"    | The full encoded list `[address, nonce=1]` |
+
 4. **Manual Transaction & Calldata Preparation**  
 We need to encode the function call manually (without requiring ABI)
 ```python
