@@ -1,5 +1,6 @@
 ## 🧩 Level 13: Gatekeeper One
 ### 🔒 Goal
+
 The contract has three gate checks that must be passed in a single call to enter().  
 Unlock the `entrant` variable by passing all three gate checks in a single transaction.
 ---
