@@ -8,9 +8,9 @@ load_dotenv()
 
 w3 = Web3(Web3.HTTPProvider(os.getenv('PROVIDER_URL')))
 if w3.is_connected():
-    print("Successfully connected to Sepolia via provider!")
+    print("Successfully connected to the provider!")
 else:
-    print("Failed to connect to Sepolia via provider.")
+    print("Failed to connect to the given provider ", os.getenv('PROVIDER_URL'))
     exit()
 
 # Load environment variables
@@ -22,7 +22,7 @@ malicious_contract_address = ""
 def send_transaction_and_wait(transaction):
     transaction = transaction.build_transaction({
         'from': _WALLET,
-        'chainId': 11155111,  # sepolia testnet chain id
+        'chainId': 11155111,
         'nonce': w3.eth.get_transaction_count(w3.to_checksum_address(_WALLET))
     })
     signed_tx = w3.eth.account.sign_transaction(transaction, private_key=_PRIVATE_KEY)

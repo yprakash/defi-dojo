@@ -1,4 +1,8 @@
 # 🛡️ Ethernaut Level 16: Preservation
+**Category**: Storage & `delegatecall`  
+**Tags**: Solidity, Proxy Contracts, Storage Collision, Web3.py  
+**Difficulty**: ★★★★☆
+---
 
 ## 🧠 TL;DR
 
