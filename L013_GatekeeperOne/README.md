@@ -3,6 +3,7 @@
 
 The contract has three gate checks that must be passed in a single call to enter().  
 Unlock the `entrant` variable by passing all three gate checks in a single transaction.
+
 ---
 ### 🚪 Gate Breakdown
 #### 🛑 gateOne
