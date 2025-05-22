@@ -51,6 +51,17 @@ This gives us the runtime code:
 ```
 602a60005260206000f3
 ```
+### 🧩 Opcode Breakdown
+
+| Opcode  | Meaning                                 |
+| ------- | --------------------------------------- |
+| `60 2a` | PUSH1 0x2a        → Push 42 onto stack  |
+| `60 00` | PUSH1 0x00        → Memory offset 0     |
+| `52`    | MSTORE            → Store 42 at mem\[0] |
+| `60 20` | PUSH1 0x20        → Return 32 bytes     |
+| `60 00` | PUSH1 0x00        → From offset 0       |
+| `f3`    | RETURN            → Return the value    |
+
 Only 10 bytes long. But we still need to deploy it.
 
 ---

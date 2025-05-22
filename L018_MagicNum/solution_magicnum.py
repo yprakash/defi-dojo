@@ -59,5 +59,5 @@ tx2 = magicnum.functions.setSolver(solver_address).build_transaction({
     'nonce': w3.eth.get_transaction_count(w3.to_checksum_address(_WALLET))
 })
 tx_receipt = send_transaction_and_wait(tx2)
-assert magicnum.functions.solver() == solver_address
+assert magicnum.functions.solver().call() == solver_address
 print('Well done, You have completed this level!!!')
