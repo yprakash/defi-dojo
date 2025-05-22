@@ -16,7 +16,6 @@ else:
 # Load environment variables
 _PRIVATE_KEY = os.getenv('PRIVATE_KEY')
 _WALLET = w3.to_checksum_address(os.getenv('WALLET'))
-malicious_contract_address = ""
 
 
 def send_transaction_and_wait(transaction):
@@ -40,8 +39,7 @@ def get_array_length(contract_address, length_storage_index):
 
 
 def compile_contract(contract_path: str, version: str, contract_name: str = None):
-    if version not in (v.public for v in solcx.get_installed_solc_versions()):
-        solcx.install_solc(version)
+    # if version not in (v.public for v in solcx.get_installed_solc_versions()): solcx.install_solc(version)
     solcx.set_solc_version(version=version)
     with open(contract_path, 'r') as file:
         contract_source = file.read()
