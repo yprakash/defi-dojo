@@ -32,16 +32,17 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
 def send_tx(transaction):
     # We have 1-line .transact() for state changes, but it works only if you are using a local node like Ganache, Anvil
     # Or your account is unlocked in the node (like Infura), which is rare in public networks. So we need below steps
+    nonce = w3.eth.get_transaction_count(player, 'pending')  # Use pending block tag to include unmined txs
     transaction = transaction.build_transaction({
         'from': player,
         'chainId': 11155111,
-        'nonce': w3.eth.get_transaction_count(player)
+        'nonce': nonce
     })
     signed_tx = w3.eth.account.sign_transaction(transaction, private_key=_PRIVATE_KEY)
     txn_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
     tx_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
     assert tx_receipt['status'] == 1
-    print(f'Completed transaction: {tx_receipt}')
+    print(f'Sent transaction with nonce {nonce}: {tx_receipt}')
     return tx_receipt
 
 
