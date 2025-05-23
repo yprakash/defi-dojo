@@ -42,7 +42,7 @@ solver_address = tx_receipt["contractAddress"]
 print('Created bytecode contract at ', solver_address)
 
 # Step 2: Set the solver on the challenge contract
-target_address = w3.to_checksum_address("<Your Instance address>")
+target_address = w3.to_checksum_address("")
 target_abi = [{
     "inputs": [{"internalType": "contract Solver", "name": "_solver", "type": "address"}],
     "name": "setSolver",

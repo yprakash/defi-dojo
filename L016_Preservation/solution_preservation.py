@@ -61,7 +61,7 @@ else:
     # malicious_contract = w3.eth.contract(address=malicious_contract_address, abi=compiled_contract['abi'])
 
 # Step 2: Load Ethernaut deployed contract
-_ethernaut_deployed_address = w3.to_checksum_address("0x4DA2364fb2C7C610759d71BA10e9E3C081F6a30b")
+_ethernaut_deployed_address = w3.to_checksum_address("")
 compiled_contract = compile_contract("./Preservation.sol", "0.8.0", "Preservation")
 preservation_contract = w3.eth.contract(abi=compiled_contract['abi'], address=_ethernaut_deployed_address)
 old_address_tz1 = preservation_contract.functions.timeZone1Library().call()

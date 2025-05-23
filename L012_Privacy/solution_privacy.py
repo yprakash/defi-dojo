@@ -34,7 +34,7 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
 
 
 # Load Ethernaut deployed contract
-_ethernaut_deployed_contract_address = w3.to_checksum_address("0x7955E9689AB058a3A618a70c64708a1546013353")
+_ethernaut_deployed_contract_address = w3.to_checksum_address("")
 privacy_contract = compile_contract('./Privacy.sol', '0.8.0', 'Privacy')
 privacy_contract = w3.eth.contract(address=_ethernaut_deployed_contract_address, abi=privacy_contract['abi'])
 assert privacy_contract.functions.locked().call()  # Initial check to make sure its locked

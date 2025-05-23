@@ -47,7 +47,7 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
     print(f'Compiled {contract_path} for contract {contract_key}')
     return contract_interface
 
-deployed_address = w3.to_checksum_address("0x0b79642cb86D3F06a40FB4Bf1D5188Df8B2e7c4D")
+deployed_address = w3.to_checksum_address("")
 compiled_contract = compile_contract("./Shop.sol", '0.8.0', "Shop")
 shop_contract = w3.eth.contract(address=deployed_address, abi=compiled_contract['abi'])
 assert not shop_contract.functions.isSold().call()

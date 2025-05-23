@@ -40,7 +40,7 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
 
 
 # Load Ethernaut deployed contract
-_ethernaut_deployed_contract_address = w3.to_checksum_address("0x67b7d83b9F410Db5f2c29Fe6455dB85f4Fb6c1b1")
+_ethernaut_deployed_contract_address = w3.to_checksum_address("")
 elevator_contract = compile_contract('./L011_Elevator/Elevator.sol', '0.8.0', 'Elevator')
 elevator_contract = w3.eth.contract(address=_ethernaut_deployed_contract_address, abi=elevator_contract['abi'])
 

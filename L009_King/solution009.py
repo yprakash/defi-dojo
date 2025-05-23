@@ -40,7 +40,7 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
 
 
 # Load Ethernaut deployed contract
-_ethernaut_deployed_contract_address = w3.to_checksum_address("0xB31C068944E1F516304B116a133d00a43841EF0F")
+_ethernaut_deployed_contract_address = w3.to_checksum_address("")
 king_contract = compile_contract('./L009_King/King.sol', '0.8.0', 'King')
 king_contract = w3.eth.contract(address=_ethernaut_deployed_contract_address, abi=king_contract['abi'])
 current_prize = king_contract.functions.prize().call()

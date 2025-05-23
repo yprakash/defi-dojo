@@ -34,7 +34,7 @@ def compile_contract(contract_path: str, version: str, contract_name: str = None
 
 
 # Load Ethernaut deployed contract
-_ethernaut_deployed_address = w3.to_checksum_address("0xbd06c37654af05FB932A2cB95C3f75862A05dC7c")
+_ethernaut_deployed_address = w3.to_checksum_address("")
 compiled_gate2_contract = compile_contract('./GatekeeperTwo.sol', '0.8.0')
 gate2_contract = w3.eth.contract(address=_ethernaut_deployed_address, abi=compiled_gate2_contract['abi'])
 # Just to confirm it is not already solved

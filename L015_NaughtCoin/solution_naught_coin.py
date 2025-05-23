@@ -49,7 +49,7 @@ def send_transaction_and_wait(transaction):
 
 
 # Load Ethernaut deployed contract
-_ethernaut_deployed_address = w3.to_checksum_address("0x9d05E0b71aEaF9D896B8390621f5418d23D96feA")
+_ethernaut_deployed_address = w3.to_checksum_address("")
 compiled_contract = compile_contract('./NaughtCoin.sol', '0.8.0')
 erc_contract = w3.eth.contract(address=_ethernaut_deployed_address, abi=compiled_contract['abi'])
 
