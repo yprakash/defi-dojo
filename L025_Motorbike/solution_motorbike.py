@@ -87,7 +87,7 @@ if hack_contract_address:
     hack_contract = w3.eth.contract(address=w3.to_checksum_address(hack_contract_address), abi=compiled_contract['abi'])
 else:
     hack_contract = w3.eth.contract(abi=compiled_contract['abi'], bytecode=compiled_contract['bin'])
-    receipt = send_tx(hack_contract.constructor())
+    receipt = send_tx(hack_contract.constructor(engine.address))
     hack_contract = w3.eth.contract(address=receipt["contractAddress"], abi=compiled_contract['abi'])
 print(f"Hack contract deployed at: {hack_contract.address}")
 
