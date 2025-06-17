@@ -63,6 +63,7 @@ Please check `solution_dex.py` for Execution Using Python
 
 In this level, transferFrom was heavily used inside the Dex contract to pull tokens in and push tokens out during swaps.
 We manually called approve() from our account to allow the DEX contract to spend our tokens on our behalf.
+
 ---
 ## 🧠 Key Takeaways
 - Integer division in Solidity truncates decimals. Use SafeMath or fixed-point libraries in production.
