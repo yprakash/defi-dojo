@@ -3,6 +3,7 @@
 **Category:** Storage Manipulation / Underflows / Insecure Inheritance  
 **Difficulty:** Hard  
 **Goal:** Claim ownership of the contract using a storage manipulation exploit.
+
 ---
 
 ## 🧩 Challenge Overview
