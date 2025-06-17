@@ -35,3 +35,8 @@ The challenge is solved when:
 - The vulnerable contract’s Ether balance is reduced to **zero**
 - The attacker's contract balance has increased by the **total funds held**
 ---
+## ✍️ Author
+
+defi-dojo – A curated collection of real-world smart contract exploit simulations, automated testing, and in-depth technical writeups.
+
+Created and maintained with ❤️ by [yprakash](mailto:yprakash.518@gmail.com).

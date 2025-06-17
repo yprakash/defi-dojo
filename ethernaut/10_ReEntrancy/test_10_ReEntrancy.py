@@ -49,5 +49,5 @@ def test_exploit(setup_module):
             tx_hash = hacker.functions.withdrawFunds.transact({'from': w3.eth.accounts[attacker_index]})
             tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
             assert tx_receipt.status == 1
-            # assert 0 == w3.eth.get_balance(target.address)
+            assert 0 == w3.eth.get_balance(target.address)
             print(f"Tested for deposit_amount {deposit} and attack_amount {amt}")
